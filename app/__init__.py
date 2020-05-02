@@ -12,6 +12,7 @@ from flask_login import LoginManager
 
 # after the db variable initialization
 login_manager = LoginManager()
+db = SQLAlchemy()  # add
 
 
 def create_app(config_name):
@@ -20,19 +21,26 @@ def create_app(config_name):
     app.config.from_pyfile('config.py')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'  # add
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    db = SQLAlchemy(app)  # add
+
     db.init_app(app)
 
-    # login_manager.init_app(app)
-    # login_manager.login_message = "You must be logged in to access this page."
-    # login_manager.login_view = "auth.login"
+    login_manager.init_app(app)
+    login_manager.login_message = "You must be logged in to access this page."
+    login_manager.login_view = "auth.login"
 
-    # migrate = Migrate(app, db)
+    migrate = Migrate(app, db)
 
-    # from app import models
+    from app import models
 
-    @app.route('/')
-    def hello_world():
-        return render_template('index.html')
+    from .admin import admin as admin_blueprint
+    from .auth import auth as auth_blueprint
+    from .home import home as home_blueprint
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')
+    app.register_blueprint(auth_blueprint)
+    app.register_blueprint(home_blueprint)
+
+    # @app.route('/')
+    # def hello_world():
+    #     return render_template('index.html')
 
     return app
