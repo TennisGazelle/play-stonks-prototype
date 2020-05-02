@@ -1,4 +1,6 @@
 #!/bin/bash
+pipenv install
+
 git status
 
 git add .
