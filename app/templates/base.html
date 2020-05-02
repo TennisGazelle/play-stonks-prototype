@@ -25,15 +25,6 @@
                 <li><a href="{{ url_for('auth.register') }}">Register</a></li>
                 <li><a href="{{ url_for('auth.login') }}">Login</a></li>
             </ul>
-
-            <!-- Modify footer menu -->
-            <ul class="list-inline">
-                <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
-                <li class="footer-menu-divider">⋅</li>
-                <li><a href="{{ url_for('auth.register') }}">Register</a></li>
-                <li class="footer-menu-divider">⋅</li>
-                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
-            </ul>
           </div>
         </div>
     </nav>
@@ -49,11 +40,11 @@
                     <ul class="list-inline">
                         <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
                         <li class="footer-menu-divider">⋅</li>
-                        <li><a href="#">Register</a></li>
+                        <li><a href="{{ url_for('auth.register') }}">Register</a></li>
                         <li class="footer-menu-divider">⋅</li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="{{ url_for('auth.login') }}">Login</a></li>
                     </ul>
-                    <p class="copyright text-muted small">Copyright © 2016. All Rights Reserved</p>
+                    <p class="copyright text-muted small">Find us on <a href="https://github.com/tennisgazelle/play-stonks-prototype">Github!</a></p>
                 </div>
             </div>
         </div>

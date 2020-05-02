@@ -1,7 +1,8 @@
-from flask import render_template
+from flask import render_template, request
 from flask_login import login_required
 
 from . import home
+from ..models import User
 
 @home.route('/')
 def homepage():
@@ -9,5 +10,6 @@ def homepage():
 
 @home.route('/dashboard')
 def dashboard():
-    return render_template('home/dashboard.html', title='Dashboard')
+    this_user_name = User.query.order_by(User.id).first().name
+    return render_template('home/dashboard.html', title='Dashboard', name=this_user_name)
 
