@@ -54,8 +54,9 @@ class User(UserMixin, db.Model):
     savings_to_checking_ratio = db.Column(db.Float, index=True)
     total_spending_money = db.Column(db.Integer, index=True)
     total_debt = db.Column(db.Integer, index=True)
+    password_hash = db.Column(db.String(128))
     # array of objectives
-    objectives = db.relationship('Objective', backref='user', lazy='dynamic')
+    # objectives = db.relationship('Objective', backref='user', lazy='dynamic')
     # array of levels
     # array of abilities
 
@@ -77,6 +78,9 @@ class User(UserMixin, db.Model):
         """
         Check if hashed password matches actual password
         """
+        if self.password_hash:
+            print('user {} has no password hash!!')
+            return True
         return check_password_hash(self.password_hash, password)
 
     def __repr__(self):

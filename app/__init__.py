@@ -1,14 +1,11 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
+from flask_bootstrap import Bootstrap
+from flask_login import LoginManager
 
 # local imports
 from config import app_config
-
-
-# after existing third-party imports
-from flask_login import LoginManager
 
 # after the db variable initialization
 login_manager = LoginManager()
@@ -29,6 +26,8 @@ def create_app(config_name):
     login_manager.login_view = "auth.login"
 
     migrate = Migrate(app, db)
+
+    Bootstrap(app)
 
     from app import models
 

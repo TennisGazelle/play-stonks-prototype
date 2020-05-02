@@ -4,4 +4,4 @@ flask-migrate
 flask-login
 glask-sqlalchemy 
 mysql-python
-flask-bootstrap
+flask_bootstrap
